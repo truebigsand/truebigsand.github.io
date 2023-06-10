@@ -6,7 +6,7 @@
   <link href="https://blog.truebigsand.top/atom.xml" rel="self"/>
   
   <link href="https://blog.truebigsand.top/"/>
-  <updated>2023-02-04T12:13:18.506Z</updated>
+  <updated>2023-06-10T14:06:17.693Z</updated>
   <id>https://blog.truebigsand.top/</id>
   
   <author>
@@ -15,6 +15,65 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>.NET 7中System.IO.Compression的性能测试</title>
+    <link href="https://blog.truebigsand.top/2023/06/10/NET-7%E4%B8%ADSystem-IO-Compression%E7%9A%84%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    <id>https://blog.truebigsand.top/2023/06/10/NET-7%E4%B8%ADSystem-IO-Compression%E7%9A%84%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</id>
+    <published>2023-06-10T13:37:01.000Z</published>
+    <updated>2023-06-10T14:06:17.693Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前我对一个字符串格式的文本文档进行了整理 将其转换为了二进制文件将一个约16GB的文本文件转换为了一个约10GB的二进制文件 其格式如下</p><table><thead><tr><th align="center">field (per row)</th><th align="center">type</th><th align="center">size</th></tr></thead><tbody><tr><td align="center">field1</td><td align="center">int64</td><td align="center">8byte</td></tr><tr><td align="center">field2</td><td align="center">int64</td><td align="center">8byte</td></tr></tbody></table><p>这不仅使得体积从约16GB减小到约10GB 还大幅提升了读取和检索的速度<br>从在WSL1中使用cat+grep最高300MB&#x2F;s的速度<br>提升到用C写一个简单的程序进行读取的最高约1GB&#x2F;s的速度<br>最近 为了进一步压缩体积 我决定对其进行压缩</p><p>当然 一切的前提是便于检索数据 即可以通过流式方法读取数据<br>于是我决定使用GZip 一方面GZip是比较广泛的压缩格式<br>另一方面C#在<code>System.IO.Compression</code>中提供了<code>GZipStream</code> 便于读取<br>同时也可以用这个进行压缩</p><p><code>GZipStream</code>提供了<code>CompressionLevel</code>的选项 包括<code>Optimal</code> <code>Fastest</code> <code>SmallestSize</code>和<code>NoComression</code><br>为了选择使用哪个等级压缩 我写了一个简单的基准测试来比较 代码如下</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Compress</span>(<span class="hljs-params">CompressionLevel compressionLevel</span>)</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;input file: <span class="hljs-subst">&#123;rawFile&#125;</span>&quot;</span>);<br>    Console.WriteLine(<span class="hljs-string">$&quot;output file: <span class="hljs-subst">&#123;gzFile&#125;</span>&quot;</span>);<br>    <span class="hljs-keyword">using</span> <span class="hljs-keyword">var</span> inputStream = File.OpenRead(rawFile);<br>    <span class="hljs-keyword">using</span> <span class="hljs-keyword">var</span> outputStream = File.OpenWrite(gzFile);<br>    <span class="hljs-keyword">using</span> <span class="hljs-keyword">var</span> gzipStream = <span class="hljs-keyword">new</span> GZipStream(outputStream, compressionLevel);<br>    <span class="hljs-keyword">var</span> sw = Stopwatch.StartNew();<br>    inputStream.CopyTo(gzipStream);<br>    <span class="hljs-keyword">var</span> seconds = sw.Elapsed.TotalSeconds;<br>    Console.WriteLine(<span class="hljs-string">$&quot;Time used: <span class="hljs-subst">&#123;seconds&#125;</span>s&quot;</span>);<br>    <span class="hljs-built_in">long</span> rawSize = <span class="hljs-keyword">new</span> FileInfo(rawFile).Length;<br>    <span class="hljs-built_in">long</span> compressedSize = <span class="hljs-keyword">new</span> FileInfo(gzFile).Length;<br>    Console.WriteLine(<span class="hljs-string">$&quot;Compressed <span class="hljs-subst">&#123;rawSize&#125;</span> bytes to <span class="hljs-subst">&#123;compressedSize&#125;</span> bytes, compression ratio: <span class="hljs-subst">&#123;Math.Round((<span class="hljs-built_in">double</span>)compressedSize / rawSize, <span class="hljs-number">5</span>) * <span class="hljs-number">100</span>&#125;</span>%&quot;</span>);<br>    Console.WriteLine(<span class="hljs-string">$&quot;Average speed: &quot;</span> +<br>        <span class="hljs-string">$&quot;Read: <span class="hljs-subst">&#123;Math.Round((<span class="hljs-built_in">double</span>)rawSize / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span> / seconds, <span class="hljs-number">3</span>)&#125;</span>MB/s, &quot;</span> +<br>        <span class="hljs-string">$&quot;Write: <span class="hljs-subst">&#123;Math.Round((<span class="hljs-built_in">double</span>)compressedSize / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span> / seconds, <span class="hljs-number">3</span>)&#125;</span>MB/s&quot;</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>    <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> compressionLevel <span class="hljs-keyword">in</span> Enum.GetValues&lt;CompressionLevel&gt;())<br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">$&quot;====================[<span class="hljs-subst">&#123;compressionLevel&#125;</span>]====================&quot;</span>);<br>        Compress(compressionLevel);<br>        Console.WriteLine();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>使用NativeAot编译后运行得到结果<br>测试平台:<br>CPU: Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz<br>RAM Size: 16GB<br>OS Version: Win11 22H2 22621.1778<br>测试结果:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs plain">====================[Optimal]====================<br>input file: D:\Files\裤子\qq8e.bin<br>output file: D:\Files\裤子\qq8e.gz<br>Time used: 263.0331656s<br>Compressed 11519053264 bytes to 5577536686 bytes, compression ratio: 48.42%<br>Average speed: Read: 41.764MB/s, Write: 20.222MB/s<br><br>====================[Fastest]====================<br>input file: D:\Files\裤子\qq8e.bin<br>output file: D:\Files\裤子\qq8e.gz<br>Time used: 133.5304461s<br>Compressed 11519053264 bytes to 5577536686 bytes, compression ratio: 48.42%<br>Average speed: Read: 82.269MB/s, Write: 39.835MB/s<br><br>====================[NoCompression]====================<br>input file: D:\Files\裤子\qq8e.bin<br>output file: D:\Files\裤子\qq8e.gz<br>Time used: 30.9754716s<br>Compressed 11519053264 bytes to 11520778240 bytes, compression ratio: 100.01500000000001%<br>Average speed: Read: 354.649MB/s, Write: 354.702MB/s<br><br>====================[SmallestSize]====================<br>input file: D:\Files\裤子\qq8e.bin<br>output file: D:\Files\裤子\qq8e.gz<br></code></pre></td></tr></table></figure><p>SmallestSize实在等不及了 根据任务管理器的数据估算Read在2MB&#x2F;s Write在200KB&#x2F;s<br>照这个速度要91.55小时才能压缩完</p><p>根据数据 选择Fastest即可</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;之前我对一个字符串格式的文本文档进行了整理 将其转换为了二进制文件将一个约16GB的文本文件转换为了一个约10GB的二进制文件 其格式如下&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;field (per row)&lt;/th&gt;
+&lt;t</summary>
+      
+    
+    
+    
+    <category term="技术" scheme="https://blog.truebigsand.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://blog.truebigsand.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term=".NET" scheme="https://blog.truebigsand.top/tags/NET/"/>
+    
+    <category term="C#" scheme="https://blog.truebigsand.top/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【解决方案】Visual Studio写C/C++时没有语法高亮</title>
+    <link href="https://blog.truebigsand.top/2023/04/05/%E3%80%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%91Visual-Studio%E5%86%99C-C-%E6%97%B6%E6%B2%A1%E6%9C%89%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE/"/>
+    <id>https://blog.truebigsand.top/2023/04/05/%E3%80%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%91Visual-Studio%E5%86%99C-C-%E6%97%B6%E6%B2%A1%E6%9C%89%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE/</id>
+    <published>2023-04-05T11:24:07.000Z</published>
+    <updated>2023-04-05T11:39:18.683Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近突然用VS写了一下C，发现没有语法高亮了，非常难受，如图<br><img src="https://s2.loli.net/2023/04/05/zSn2H64EaYbuZV9.png"><br>解决方案如下<br>在 <code>工具-&gt;选项-&gt;文本编辑器-&gt;C/C++-&gt;高级</code>中<br>将<code>禁用语义着色</code>设为<code>False</code><br>然后就恢复了<br><img src="https://s2.loli.net/2023/04/05/9f4s1dgCz5Kj3bS.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近突然用VS写了一下C，发现没有语法高亮了，非常难受，如图&lt;br&gt;&lt;img src=&quot;https://s2.loli.net/2023/04/05/zSn2H64EaYbuZV9.png&quot;&gt;&lt;br&gt;解决方案如下&lt;br&gt;在 &lt;code&gt;工具-&amp;gt;选项-&amp;gt;文本编辑器</summary>
+      
+    
+    
+    
+    <category term="技术" scheme="https://blog.truebigsand.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://blog.truebigsand.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Visual Studio" scheme="https://blog.truebigsand.top/tags/Visual-Studio/"/>
+    
+  </entry>
   
   <entry>
     <title>「RAV Endpoint Protection」我测你的码</title>
@@ -75,14 +134,14 @@
     <link href="https://blog.truebigsand.top/2022/12/27/%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D%E8%BF%81%E7%A7%BB/"/>
     <id>https://blog.truebigsand.top/2022/12/27/%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D%E8%BF%81%E7%A7%BB/</id>
     <published>2022-12-27T12:13:36.000Z</published>
-    <updated>2022-12-28T12:18:01.281Z</updated>
+    <updated>2023-04-05T11:53:41.194Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天想到<a href="https://vercel.com/">vercel</a>对<a href="https://nextjs.org/">Next.js</a>的宣传，心血来潮想要把博客迁到vercel上，顺便测试一下<a href="https://pages.github.com/">github pages</a>和<a href="https://vercel.com/">vercel</a>的速度 感谢<a href="http://www.17ce.com/">17ce</a>提供的测速服务</p><h1 id="测速结果"><a href="#测速结果" class="headerlink" title="测速结果"></a>测速结果</h1><h2 id="使用Cloudflare-CDN"><a href="#使用Cloudflare-CDN" class="headerlink" title="使用Cloudflare CDN"></a>使用Cloudflare CDN</h2><h3 id="vercel"><a href="#vercel" class="headerlink" title="vercel"></a>vercel</h3><p><img src="/imgs/vercel-cloudflare.png" alt="http://www.17ce.com/site/http/20221227_5fb56cc085df11ed8cb737dbeefbfc25:1.html"></p><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><p><img src="/imgs/github-cloudflare.png" alt="http://www.17ce.com/site/http/20221227_6b5e807085df11ed8cb737dbeefbfc25:1.html"></p><h2 id="不使用Cloudflare-CDN"><a href="#不使用Cloudflare-CDN" class="headerlink" title="不使用Cloudflare CDN"></a>不使用Cloudflare CDN</h2><h3 id="vercel-1"><a href="#vercel-1" class="headerlink" title="vercel"></a>vercel</h3><p><img src="/imgs/vercel-non-cloudflare.png" alt="http://www.17ce.com/site/http/20221227_32c09b6085e211eda16def0f096a0469:1.html"></p><h3 id="github-1"><a href="#github-1" class="headerlink" title="github"></a>github</h3><p><img src="/imgs/github-non-cloudflare.png" alt="http://www.17ce.com/site/http/20221227_dbbca5b085e211ed8cb737dbeefbfc25:1.html"></p><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>从结果可以看出，Cloudflare CDN起到了一定效果(尤其是境外地区)，但对于大陆地区没有显著效果<br>(不知道为什么vercel-cloudflare的结果有很多地方测不到)<br>最后还是决定把<a href="https://blog.truebigsand.top/">https://blog.truebigsand.top</a>给vercel-cloudflare</p><h1 id="说说域名"><a href="#说说域名" class="headerlink" title="说说域名"></a>说说域名</h1><p><strong>truebigsand.top</strong><br>在阿里云买的 top域名是综合最便宜的 9元首年 之后29一年<br>还算承担得起 准备一直续着<br>目前部署了一些api</p><h1 id="已知的问题"><a href="#已知的问题" class="headerlink" title="已知的问题"></a>已知的问题</h1><p>Github Pages似乎每次更新都会充值自定义域名</p><h1 id="「更新」-使用阿里云拨测"><a href="#「更新」-使用阿里云拨测" class="headerlink" title="「更新」: 使用阿里云拨测"></a>「更新」: 使用<a href="https://boce.aliyun.com/detect/http">阿里云拨测</a></h1><p>才发现阿里云还有这样的服务 挺好用的 (截图不整了)</p><h2 id="使用Cloudflare-CDN-1"><a href="#使用Cloudflare-CDN-1" class="headerlink" title="使用Cloudflare CDN"></a>使用Cloudflare CDN</h2><h3 id="vercel-2"><a href="#vercel-2" class="headerlink" title="vercel"></a>vercel</h3><p><a href="https://boce.aliyun.com/detect/http/0d0a16f20c0a4cf9b746fca110fbf573">https://boce.aliyun.com/detect/http/0d0a16f20c0a4cf9b746fca110fbf573</a></p><h3 id="github-2"><a href="#github-2" class="headerlink" title="github"></a>github</h3><p><a href="https://boce.aliyun.com/detect/http/f7cdca54674149e1bb1beaee3eec50ce">https://boce.aliyun.com/detect/http/f7cdca54674149e1bb1beaee3eec50ce</a></p><h2 id="不使用Cloudflare-CDN-1"><a href="#不使用Cloudflare-CDN-1" class="headerlink" title="不使用Cloudflare CDN"></a>不使用Cloudflare CDN</h2><h3 id="vercel-3"><a href="#vercel-3" class="headerlink" title="vercel"></a>vercel</h3><p><a href="https://boce.aliyun.com/detect/http/8ca769ad5bb34c85bd75a35adf02d78f">https://boce.aliyun.com/detect/http/8ca769ad5bb34c85bd75a35adf02d78f</a></p><h3 id="github-3"><a href="#github-3" class="headerlink" title="github"></a>github</h3><p><a href="https://boce.aliyun.com/detect/http/c2d4b3bf9ae14ebe912b7b9f708360c8">https://boce.aliyun.com/detect/http/c2d4b3bf9ae14ebe912b7b9f708360c8</a></p>]]></content>
+    <content type="html"><![CDATA[<p>今天想到<a href="https://vercel.com/">vercel</a>对<a href="https://nextjs.org/">Next.js</a>的宣传，心血来潮想要把博客迁到vercel上，顺便测试一下<a href="https://pages.github.com/">github pages</a>和<a href="https://vercel.com/">vercel</a>的速度 感谢<a href="http://www.17ce.com/">17ce</a>提供的测速服务</p><h1 id="测速结果"><a href="#测速结果" class="headerlink" title="测速结果"></a>测速结果</h1><h2 id="使用Cloudflare-CDN"><a href="#使用Cloudflare-CDN" class="headerlink" title="使用Cloudflare CDN"></a>使用Cloudflare CDN</h2><h3 id="vercel"><a href="#vercel" class="headerlink" title="vercel"></a>vercel</h3><p><img src="https://s2.loli.net/2023/04/05/12mhACDOEVTciYS.png" alt="http://www.17ce.com/site/http/20221227_5fb56cc085df11ed8cb737dbeefbfc25:1.html"></p><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><p><img src="https://s2.loli.net/2023/04/05/uxjKZMv5d7oYFWr.png" alt="http://www.17ce.com/site/http/20221227_6b5e807085df11ed8cb737dbeefbfc25:1.html"></p><h2 id="不使用Cloudflare-CDN"><a href="#不使用Cloudflare-CDN" class="headerlink" title="不使用Cloudflare CDN"></a>不使用Cloudflare CDN</h2><h3 id="vercel-1"><a href="#vercel-1" class="headerlink" title="vercel"></a>vercel</h3><p><img src="https://s2.loli.net/2023/04/05/Tt2zsxIg6oPFlpu.png" alt="http://www.17ce.com/site/http/20221227_32c09b6085e211eda16def0f096a0469:1.html"></p><h3 id="github-1"><a href="#github-1" class="headerlink" title="github"></a>github</h3><p><img src="https://s2.loli.net/2023/04/05/14hpIaTHcZrdvwn.png" alt="http://www.17ce.com/site/http/20221227_dbbca5b085e211ed8cb737dbeefbfc25:1.html"></p><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>从结果可以看出，Cloudflare CDN起到了一定效果(尤其是境外地区)，但对于大陆地区没有显著效果<br>(不知道为什么vercel-cloudflare的结果有很多地方测不到)<br>最后还是决定把<a href="https://blog.truebigsand.top/">https://blog.truebigsand.top</a>给vercel-cloudflare</p><h1 id="说说域名"><a href="#说说域名" class="headerlink" title="说说域名"></a>说说域名</h1><p><strong>truebigsand.top</strong><br>在阿里云买的 top域名是综合最便宜的 9元首年 之后29一年<br>还算承担得起 准备一直续着<br>目前部署了一些api</p><h1 id="已知的问题"><a href="#已知的问题" class="headerlink" title="已知的问题"></a>已知的问题</h1><p>Github Pages似乎每次更新都会充值自定义域名</p><h1 id="「更新」-使用阿里云拨测"><a href="#「更新」-使用阿里云拨测" class="headerlink" title="「更新」: 使用阿里云拨测"></a>「更新」: 使用<a href="https://boce.aliyun.com/detect/http">阿里云拨测</a></h1><p>才发现阿里云还有这样的服务 挺好用的 (截图不整了)</p><h2 id="使用Cloudflare-CDN-1"><a href="#使用Cloudflare-CDN-1" class="headerlink" title="使用Cloudflare CDN"></a>使用Cloudflare CDN</h2><h3 id="vercel-2"><a href="#vercel-2" class="headerlink" title="vercel"></a>vercel</h3><p><a href="https://boce.aliyun.com/detect/http/0d0a16f20c0a4cf9b746fca110fbf573">https://boce.aliyun.com/detect/http/0d0a16f20c0a4cf9b746fca110fbf573</a></p><h3 id="github-2"><a href="#github-2" class="headerlink" title="github"></a>github</h3><p><a href="https://boce.aliyun.com/detect/http/f7cdca54674149e1bb1beaee3eec50ce">https://boce.aliyun.com/detect/http/f7cdca54674149e1bb1beaee3eec50ce</a></p><h2 id="不使用Cloudflare-CDN-1"><a href="#不使用Cloudflare-CDN-1" class="headerlink" title="不使用Cloudflare CDN"></a>不使用Cloudflare CDN</h2><h3 id="vercel-3"><a href="#vercel-3" class="headerlink" title="vercel"></a>vercel</h3><p><a href="https://boce.aliyun.com/detect/http/8ca769ad5bb34c85bd75a35adf02d78f">https://boce.aliyun.com/detect/http/8ca769ad5bb34c85bd75a35adf02d78f</a></p><h3 id="github-3"><a href="#github-3" class="headerlink" title="github"></a>github</h3><p><a href="https://boce.aliyun.com/detect/http/c2d4b3bf9ae14ebe912b7b9f708360c8">https://boce.aliyun.com/detect/http/c2d4b3bf9ae14ebe912b7b9f708360c8</a></p><h1 id="「更新2」"><a href="#「更新2」" class="headerlink" title="「更新2」"></a>「更新2」</h1><p>测 链接过期了 阿里云果然没这么好心</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+    <summary type="html">&lt;p&gt;今天想到&lt;a href=&quot;https://vercel.com/&quot;&gt;vercel&lt;/a&gt;对&lt;a href=&quot;https://nextjs.org/&quot;&gt;Next.js&lt;/a&gt;的宣传，心血来潮想要把博客迁到vercel上，顺便测试一下&lt;a href=&quot;https://pages</summary>
       
     
     
@@ -323,14 +382,14 @@
     <link href="https://blog.truebigsand.top/2022/08/19/gitee-nmsl/"/>
     <id>https://blog.truebigsand.top/2022/08/19/gitee-nmsl/</id>
     <published>2022-08-19T13:20:55.421Z</published>
-    <updated>2022-08-20T04:57:15.756Z</updated>
+    <updated>2023-04-05T11:42:58.502Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>就在刚才，我想把这个博客部署到Gitee Pages上<br>Gitee Pages pull后要手动重新部署不说 它居然给我报了这个<br><img src="/imgs/gitee-nmsl-1.png"><br>我一看 大抵又是我的名字触发违禁词了罢<br>有一说一 这屏蔽词技术网易看了都要甘拜下风</p><p>至此 Gitee只作备份</p><p>晦气</p>]]></content>
+    <content type="html"><![CDATA[<p>就在刚才，我想把这个博客部署到Gitee Pages上<br>Gitee Pages pull后要手动重新部署不说 它居然给我报了这个<br><img src="https://s2.loli.net/2023/04/05/3ZadghYqpQ5KM8D.png"><br>我一看 大抵又是我的名字触发违禁词了罢<br>有一说一 这屏蔽词技术网易看了都要甘拜下风</p><p>至此 Gitee只作备份</p><p>晦气</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+    <summary type="html">&lt;p&gt;就在刚才，我想把这个博客部署到Gitee Pages上&lt;br&gt;Gitee Pages pull后要手动重新部署不说 它居然给我报了这个&lt;br&gt;&lt;img src=&quot;https://s2.loli.net/2023/04/05/3ZadghYqpQ5KM8D.png&quot;&gt;&lt;br&gt;</summary>
       
     
     
