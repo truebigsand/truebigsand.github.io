@@ -6,7 +6,7 @@
   <link href="https://blog.truebigsand.top/atom.xml" rel="self"/>
   
   <link href="https://blog.truebigsand.top/"/>
-  <updated>2023-06-11T13:11:51.913Z</updated>
+  <updated>2023-06-22T13:05:29.958Z</updated>
   <id>https://blog.truebigsand.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C#随笔</title>
+    <link href="https://blog.truebigsand.top/2023/06/22/CSharp-%E9%9A%8F%E7%AC%94/"/>
+    <id>https://blog.truebigsand.top/2023/06/22/CSharp-%E9%9A%8F%E7%AC%94/</id>
+    <published>2023-06-22T12:57:57.000Z</published>
+    <updated>2023-06-22T13:05:29.958Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近写项目的时候用到这样一段代码</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Console.WriteLine(</span><br><span class="line">    <span class="built_in">string</span>.Join(<span class="string">&#x27;\n&#x27;</span>, (<span class="keyword">await</span> api.Download(<span class="number">3174</span>))</span><br><span class="line">        .Split(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        .Where(</span><br><span class="line">            line =&gt; !<span class="built_in">string</span>.IsNullOrWhiteSpace(line)</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">);</span><br></pre></td></tr></table></figure><p>理想情况下中间打算写成<code>.Where(!string.IsNullOrWhiteSpace)</code><br>但是C#好像不支持这样的运算符重载<br>于是写一个函数处理一下</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Functional</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="title">Func</span>&lt;<span class="title">T</span>, <span class="title">bool</span>&gt; <span class="title">Not</span>&lt;<span class="title">T</span>&gt;(<span class="params">Func&lt;T, <span class="built_in">bool</span>&gt; func</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> (T para) =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> !func(para);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>然后就可以做到这样的效果</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Console.WriteLine(</span><br><span class="line">    <span class="built_in">string</span>.Join(<span class="string">&#x27;\n&#x27;</span>, (<span class="keyword">await</span> api.Download(<span class="number">3174</span>))</span><br><span class="line">        .Split(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        .Where(</span><br><span class="line">            Functional.Not&lt;<span class="built_in">string</span>&gt;(<span class="built_in">string</span>.IsNullOrWhiteSpace)</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">);</span><br></pre></td></tr></table></figure><p>PS: 不知道为什么C#推不出来泛型的类型 必须手动加上<code>&lt;string&gt;</code><br>ASS: 打算扩充一下Functional类 做成常用库</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近写项目的时候用到这样一段代码&lt;/p&gt;
+&lt;figure class=&quot;highlight c#&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;</summary>
+      
+    
+    
+    
+    <category term="技术" scheme="https://blog.truebigsand.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://blog.truebigsand.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term=".NET" scheme="https://blog.truebigsand.top/tags/NET/"/>
+    
+    <category term="C#" scheme="https://blog.truebigsand.top/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>.NET 7中System.IO.Compression的性能测试</title>
@@ -126,9 +155,9 @@
     <category term="日常" scheme="https://blog.truebigsand.top/categories/%E6%97%A5%E5%B8%B8/"/>
     
     
-    <category term="网站" scheme="https://blog.truebigsand.top/tags/%E7%BD%91%E7%AB%99/"/>
-    
     <category term="图床" scheme="https://blog.truebigsand.top/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+    <category term="网站" scheme="https://blog.truebigsand.top/tags/%E7%BD%91%E7%AB%99/"/>
     
   </entry>
   
@@ -405,9 +434,9 @@
     
     <category term="技术" scheme="https://blog.truebigsand.top/tags/%E6%8A%80%E6%9C%AF/"/>
     
-    <category term="Gitee" scheme="https://blog.truebigsand.top/tags/Gitee/"/>
-    
     <category term="网站" scheme="https://blog.truebigsand.top/tags/%E7%BD%91%E7%AB%99/"/>
+    
+    <category term="Gitee" scheme="https://blog.truebigsand.top/tags/Gitee/"/>
     
   </entry>
   
