@@ -155,9 +155,9 @@
     <category term="日常" scheme="https://blog.truebigsand.top/categories/%E6%97%A5%E5%B8%B8/"/>
     
     
-    <category term="图床" scheme="https://blog.truebigsand.top/tags/%E5%9B%BE%E5%BA%8A/"/>
-    
     <category term="网站" scheme="https://blog.truebigsand.top/tags/%E7%BD%91%E7%AB%99/"/>
+    
+    <category term="图床" scheme="https://blog.truebigsand.top/tags/%E5%9B%BE%E5%BA%8A/"/>
     
   </entry>
   
@@ -434,9 +434,9 @@
     
     <category term="技术" scheme="https://blog.truebigsand.top/tags/%E6%8A%80%E6%9C%AF/"/>
     
-    <category term="网站" scheme="https://blog.truebigsand.top/tags/%E7%BD%91%E7%AB%99/"/>
-    
     <category term="Gitee" scheme="https://blog.truebigsand.top/tags/Gitee/"/>
+    
+    <category term="网站" scheme="https://blog.truebigsand.top/tags/%E7%BD%91%E7%AB%99/"/>
     
   </entry>
   
