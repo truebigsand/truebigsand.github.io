@@ -6,7 +6,7 @@
   <link href="https://blog.truebigsand.top/atom.xml" rel="self"/>
   
   <link href="https://blog.truebigsand.top/"/>
-  <updated>2023-07-13T13:24:59.039Z</updated>
+  <updated>2023-08-04T12:54:23.805Z</updated>
   <id>https://blog.truebigsand.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Powershell美化</title>
+    <link href="https://blog.truebigsand.top/2023/08/04/Powershell%E7%BE%8E%E5%8C%96/"/>
+    <id>https://blog.truebigsand.top/2023/08/04/Powershell%E7%BE%8E%E5%8C%96/</id>
+    <published>2023-08-04T12:28:58.000Z</published>
+    <updated>2023-08-04T12:54:23.805Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近看了B站的一个视频 受到启发 准备给电脑终端美化一下<br>因为我把<code>Windows Terminal</code>作为终端默认程序 所以和窗口相关的就不用刻意美化了（本来就很好看）</p><h3 id="安装Oh-My-Posh"><a href="#安装Oh-My-Posh" class="headerlink" title="安装Oh My Posh"></a>安装<code>Oh My Posh</code></h3><p>跟着官网的教程走就可以了 非常简单</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winget install JanDeDobbeleer.OhMyPosh <span class="literal">-s</span> winget</span><br></pre></td></tr></table></figure><p>之后一定要重启一下终端来加载环境变量PATH<br>然后我们会发现终端开始的信息成了这样<br><img src="https://s2.loli.net/2023/08/04/up1GesCOQAE3aif.png"><br>显然是字体出了问题</p><h3 id="安装字体"><a href="#安装字体" class="headerlink" title="安装字体"></a>安装字体</h3><p>这里推荐<a href="https://www.nerdfonts.com/">Nerd Fonts</a> 这是将各种图标符号整合到常用代码字体的一个项目 到下载页面选择一个喜欢的字体用就可以了（这里使用JetBrainsMono Nerd Font）<br>安装好后从<code>Windows Terminal</code>的设置页面选择刚才的字体就可以了<br><img src="https://s2.loli.net/2023/08/04/GRAYS7EvZJyXUdb.png"></p><h3 id="终端适配"><a href="#终端适配" class="headerlink" title="终端适配"></a>终端适配</h3><p>在终端中打开PROFILE文件</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code <span class="variable">$PROFILE</span></span><br></pre></td></tr></table></figure><p>把下面的内容复制进去</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">oh</span><span class="literal">-my-posh</span> init pwsh | <span class="built_in">Invoke-Expression</span></span><br></pre></td></tr></table></figure><p>然后保存</p><h3 id="VSCode适配"><a href="#VSCode适配" class="headerlink" title="VSCode适配"></a>VSCode适配</h3><p>修改VSCode的<code>settings.json</code>中<code>terminal.integrated.fontFamily</code>的值为刚才的字体名称</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近看了B站的一个视频 受到启发 准备给电脑终端美化一下&lt;br&gt;因为我把&lt;code&gt;Windows Terminal&lt;/code&gt;作为终端默认程序 所以和窗口相关的就不用刻意美化了（本来就很好看）&lt;/p&gt;
+&lt;h3 id=&quot;安装Oh-My-Posh&quot;&gt;&lt;a href=&quot;#安装</summary>
+      
+    
+    
+    
+    <category term="技术" scheme="https://blog.truebigsand.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://blog.truebigsand.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="Powershell" scheme="https://blog.truebigsand.top/tags/Powershell/"/>
+    
+    <category term="美化" scheme="https://blog.truebigsand.top/tags/%E7%BE%8E%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>CSharp随笔-癫疯之作</title>
@@ -534,32 +563,6 @@
     <category term="Gitee" scheme="https://blog.truebigsand.top/tags/Gitee/"/>
     
     <category term="网站" scheme="https://blog.truebigsand.top/tags/%E7%BD%91%E7%AB%99/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello world!</title>
-    <link href="https://blog.truebigsand.top/2022/08/19/hello-world/"/>
-    <id>https://blog.truebigsand.top/2022/08/19/hello-world/</id>
-    <published>2022-08-19T07:58:02.063Z</published>
-    <updated>2022-08-20T04:57:27.818Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="关于这个博客"><a href="#关于这个博客" class="headerlink" title="关于这个博客"></a>关于这个博客</h2><p>其实很早就想搞一个博客 但是没有找到合适的平台和方法<br>各种虚拟主机&#x2F;云服务器也捣鼓过一段时间（现在还在）<br>WordPress等框架也玩过<br>但是最终都因为钱包或者感到无聊就停了</p><p>现在因为想要contribute<a href="https://github.com/Crequency/KitX">某个项目</a> 进群问题是个人主页 然后就心血来潮整了这个博客</p><p>主要目的就是记录一些东西 不然等时间一长全都忘了<br>以前也写过一点东西 后来都找不到了<br>以后会不定期写点东西</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;关于这个博客&quot;&gt;&lt;a href=&quot;#关于这个博客&quot; class=&quot;headerlink&quot; title=&quot;关于这个博客&quot;&gt;&lt;/a&gt;关于这个博客&lt;/h2&gt;&lt;p&gt;其实很早就想搞一个博客 但是没有找到合适的平台和方法&lt;br&gt;各种虚拟主机&amp;#x2F;云服务器也捣鼓过一段时间</summary>
-      
-    
-    
-    
-    <category term="日常" scheme="https://blog.truebigsand.top/categories/%E6%97%A5%E5%B8%B8/"/>
-    
-    
-    <category term="网站" scheme="https://blog.truebigsand.top/tags/%E7%BD%91%E7%AB%99/"/>
-    
-    <category term="大事件" scheme="https://blog.truebigsand.top/tags/%E5%A4%A7%E4%BA%8B%E4%BB%B6/"/>
     
   </entry>
   
