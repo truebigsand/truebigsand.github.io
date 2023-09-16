@@ -6,7 +6,7 @@
   <link href="https://blog.truebigsand.top/atom.xml" rel="self"/>
   
   <link href="https://blog.truebigsand.top/"/>
-  <updated>2023-08-04T12:54:23.805Z</updated>
+  <updated>2023-08-07T11:50:14.952Z</updated>
   <id>https://blog.truebigsand.top/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++编译期计算的探索</title>
+    <link href="https://blog.truebigsand.top/2023/08/07/C++-%E7%BC%96%E8%AF%91%E6%9C%9F%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8E%A2%E7%B4%A2/"/>
+    <id>https://blog.truebigsand.top/2023/08/07/C++-%E7%BC%96%E8%AF%91%E6%9C%9F%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8E%A2%E7%B4%A2/</id>
+    <published>2023-08-07T11:41:23.000Z</published>
+    <updated>2023-08-07T11:50:14.952Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;array&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> value_type, <span class="type">int</span> N&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">fib</span> &#123;</span><br><span class="line">    <span class="keyword">constexpr</span> <span class="type">static</span> value_type value = fib&lt;value_type, N - <span class="number">1</span>&gt;::value + fib&lt;value_type, N - <span class="number">2</span>&gt;::value;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> value_type&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">fib</span>&lt;value_type, <span class="number">0</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">constexpr</span> <span class="type">static</span> <span class="type">int</span> value = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> value_type&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">fib</span>&lt;value_type, <span class="number">1</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">constexpr</span> <span class="type">static</span> <span class="type">int</span> value = <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> value_type&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">fib</span>&lt;value_type, <span class="number">2</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">constexpr</span> <span class="type">static</span> <span class="type">int</span> value = <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> value_type, <span class="keyword">auto</span> ...N&gt;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> _gen_fib(std::index_sequence&lt;N...&gt;) &#123;</span><br><span class="line">    <span class="keyword">return</span> std::array&lt;value_type, <span class="keyword">sizeof</span>...(N)&gt;&#123; fib&lt;value_type, N&gt;::value... &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> value_type, <span class="type">int</span> N&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">auto</span> <span class="title">gen_fib</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> _gen_fib&lt;value_type&gt;(std::make_index_sequence&lt;N&gt;&#123;&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constexpr</span> <span class="keyword">auto</span> fibs = <span class="built_in">gen_fib</span>&lt;<span class="type">long</span> <span class="type">long</span>, <span class="number">92</span>&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; fibs.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        std::cout &lt;&lt; i &lt;&lt; <span class="string">&quot;:\t&quot;</span> &lt;&lt; fibs[i] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;</summary>
+      
+    
+    
+    
+    <category term="技术" scheme="https://blog.truebigsand.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://blog.truebigsand.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="编译期计算" scheme="https://blog.truebigsand.top/tags/%E7%BC%96%E8%AF%91%E6%9C%9F%E8%AE%A1%E7%AE%97/"/>
+    
+    <category term="C++" scheme="https://blog.truebigsand.top/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>Powershell美化</title>
@@ -132,11 +160,11 @@
     
     <category term="技术" scheme="https://blog.truebigsand.top/tags/%E6%8A%80%E6%9C%AF/"/>
     
+    <category term="C++" scheme="https://blog.truebigsand.top/tags/C/"/>
+    
     <category term=".NET" scheme="https://blog.truebigsand.top/tags/NET/"/>
     
     <category term="C#" scheme="https://blog.truebigsand.top/tags/C/"/>
-    
-    <category term="C++" scheme="https://blog.truebigsand.top/tags/C/"/>
     
     <category term="Python" scheme="https://blog.truebigsand.top/tags/Python/"/>
     
@@ -535,34 +563,6 @@
     
     
     <category term="寄青年" scheme="https://blog.truebigsand.top/tags/%E5%AF%84%E9%9D%92%E5%B9%B4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gitee 你妈死了</title>
-    <link href="https://blog.truebigsand.top/2022/08/19/gitee-nmsl/"/>
-    <id>https://blog.truebigsand.top/2022/08/19/gitee-nmsl/</id>
-    <published>2022-08-19T13:20:55.421Z</published>
-    <updated>2023-04-05T11:42:58.502Z</updated>
-    
-    <content type="html"><![CDATA[<p>就在刚才，我想把这个博客部署到Gitee Pages上<br>Gitee Pages pull后要手动重新部署不说 它居然给我报了这个<br><img src="https://s2.loli.net/2023/04/05/3ZadghYqpQ5KM8D.png"><br>我一看 大抵又是我的名字触发违禁词了罢<br>有一说一 这屏蔽词技术网易看了都要甘拜下风</p><p>至此 Gitee只作备份</p><p>晦气</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;就在刚才，我想把这个博客部署到Gitee Pages上&lt;br&gt;Gitee Pages pull后要手动重新部署不说 它居然给我报了这个&lt;br&gt;&lt;img src=&quot;https://s2.loli.net/2023/04/05/3ZadghYqpQ5KM8D.png&quot;&gt;&lt;br&gt;</summary>
-      
-    
-    
-    
-    <category term="日常" scheme="https://blog.truebigsand.top/categories/%E6%97%A5%E5%B8%B8/"/>
-    
-    
-    <category term="技术" scheme="https://blog.truebigsand.top/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="Gitee" scheme="https://blog.truebigsand.top/tags/Gitee/"/>
-    
-    <category term="网站" scheme="https://blog.truebigsand.top/tags/%E7%BD%91%E7%AB%99/"/>
     
   </entry>
   
