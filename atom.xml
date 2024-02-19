@@ -239,7 +239,7 @@
     <link href="https://blog.truebigsand.top/2023/04/05/%E3%80%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%91Visual-Studio%E5%86%99C-C-%E6%97%B6%E6%B2%A1%E6%9C%89%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE/"/>
     <id>https://blog.truebigsand.top/2023/04/05/%E3%80%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%91Visual-Studio%E5%86%99C-C-%E6%97%B6%E6%B2%A1%E6%9C%89%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE/</id>
     <published>2023-04-05T11:24:07.000Z</published>
-    <updated>2023-04-05T11:39:18.683Z</updated>
+    <updated>2024-02-14T11:52:06.756Z</updated>
     
     <content type="html"><![CDATA[<p>最近突然用VS写了一下C，发现没有语法高亮了，非常难受，如图<br><img src="https://s2.loli.net/2023/04/05/zSn2H64EaYbuZV9.png"><br>解决方案如下<br>在 <code>工具-&gt;选项-&gt;文本编辑器-&gt;C/C++-&gt;高级</code>中<br>将<code>禁用语义着色</code>设为<code>False</code><br>然后就恢复了<br><img src="https://s2.loli.net/2023/04/05/9f4s1dgCz5Kj3bS.png"></p>]]></content>
     
