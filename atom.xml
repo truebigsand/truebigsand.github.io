@@ -9,8 +9,42 @@
     <atom:link href="https://blog.truebigsand.top/atom.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Sat, 30 Nov 2024 11:44:37 GMT</pubDate>
+    <pubDate>Sun, 02 Feb 2025 08:03:05 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>CentOS 7 非LVM分区扩容</title>
+      <link>https://blog.truebigsand.top/2025/02/02/CentOS-7-%E9%9D%9ELVM%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/</link>
+      <guid>https://blog.truebigsand.top/2025/02/02/CentOS-7-%E9%9D%9ELVM%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/</guid>
+      <pubDate>Sun, 02 Feb 2025 07:45:29 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;起因是跑在服务器上的CentOS的硬盘爆了 在ESXi中扩容后没有反应 需要到系统中进行设置&lt;br&gt;
+安装系统时图方便没有用LVM 顺便一提现在网上搜索&lt;code&gt;CentOS 分区扩容&lt;/code&gt;全是基于LVM的 并且文章也是互相Copy😡😡😡&lt;br&gt;
+其实非LV</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>起因是跑在服务器上的CentOS的硬盘爆了 在ESXi中扩容后没有反应 需要到系统中进行设置<br>安装系统时图方便没有用LVM 顺便一提现在网上搜索<code>CentOS 分区扩容</code>全是基于LVM的 并且文章也是互相Copy😡😡😡<br>其实非LVM的扩容反而更简单</p><h3 id="步骤">步骤</h3><p>查看现有分区类型及大小</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span> -lh</span><br></pre></td></tr></table></figure><p>进入分区编辑（以sda为例）</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sda</span><br></pre></td></tr></table></figure><p>根据操作提示 删除最后一个分区并在原地（一般只需使用默认起始位置 若自行更改过则记录原分区起始位置并填入）新建一个分区 保存并退出</p><p>刷新分区信息</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">partprobe /dev/sda</span><br></pre></td></tr></table></figure><p>刷新分区：（填入之前创建的分区号 此处位sda3）</p><ul><li>若为ext2/ext3/ext4文件系统 则使用<code>resize2fs /dev/sda3</code></li><li>若为xfs文件系统 则使用<code>xfs_growfs /dev/sda3</code></li></ul><p>大功告成 可以使用<code>df -lh</code>或<code>lsblk</code>查看现在的分区信息</p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.truebigsand.top/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://blog.truebigsand.top/tags/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      <category domain="https://blog.truebigsand.top/tags/CentOS/">CentOS</category>
+      
+      <category domain="https://blog.truebigsand.top/tags/%E7%A3%81%E7%9B%98/">磁盘</category>
+      
+      <category domain="https://blog.truebigsand.top/tags/%E5%88%86%E5%8C%BA/">分区</category>
+      
+      
+      <comments>https://blog.truebigsand.top/2025/02/02/CentOS-7-%E9%9D%9ELVM%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>一些导体棒切割磁感线的运动学方程</title>
@@ -36,9 +70,9 @@
       
       <category domain="https://blog.truebigsand.top/tags/%E6%95%B0%E5%AD%A6/">数学</category>
       
-      <category domain="https://blog.truebigsand.top/tags/%E7%89%A9%E7%90%86/">物理</category>
-      
       <category domain="https://blog.truebigsand.top/tags/%E6%8E%A8%E5%AF%BC/">推导</category>
+      
+      <category domain="https://blog.truebigsand.top/tags/%E7%89%A9%E7%90%86/">物理</category>
       
       
       <comments>https://blog.truebigsand.top/2024/10/13/%E4%B8%80%E4%BA%9B%E5%AF%BC%E4%BD%93%E6%A3%92%E5%88%87%E5%89%B2%E7%A3%81%E6%84%9F%E7%BA%BF%E7%9A%84%E8%BF%90%E5%8A%A8%E5%AD%A6%E6%96%B9%E7%A8%8B/#disqus_thread</comments>
@@ -100,9 +134,9 @@
       
       <category domain="https://blog.truebigsand.top/tags/%E6%95%B0%E5%AD%A6/">数学</category>
       
-      <category domain="https://blog.truebigsand.top/tags/%E7%89%A9%E7%90%86/">物理</category>
-      
       <category domain="https://blog.truebigsand.top/tags/%E6%8E%A8%E5%AF%BC/">推导</category>
+      
+      <category domain="https://blog.truebigsand.top/tags/%E7%89%A9%E7%90%86/">物理</category>
       
       
       <comments>https://blog.truebigsand.top/2024/07/19/%E6%AD%A3%E5%BC%A6%E5%BC%8F%E4%BA%A4%E5%8F%98%E7%94%B5%E6%B5%81%E7%9A%84%E7%AD%89%E6%95%88%E7%94%B5%E6%B5%81/#disqus_thread</comments>
@@ -999,32 +1033,6 @@ Gitee Pages pull后要手动重新部署不说 它居然给我报了这个&lt;br
     </item>
     
     <item>
-      <title>鸟人日记</title>
-      <link>https://blog.truebigsand.top/2022/08/20/%E5%AF%84%E9%9D%92%E5%B9%B4/%E9%B8%9F%E4%BA%BA%E6%97%A5%E8%AE%B0/</link>
-      <guid>https://blog.truebigsand.top/2022/08/20/%E5%AF%84%E9%9D%92%E5%B9%B4/%E9%B8%9F%E4%BA%BA%E6%97%A5%E8%AE%B0/</guid>
-      <pubDate>Sat, 20 Aug 2022 05:08:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;某Z君，今隐其名，皆余昔日在中学时良友，分隔多年，消息渐缺。日前偶闻其一大病，适归故乡，迂道往访，则仅晤一人，言病者晨瑞也。劳君远道来视，然已早愈，赴某地候补矣。因大笑，出示日记二册，谓可见当日病状，不妨献诸旧友。持归阅一过，知所患盖“鸟人”一类。语颇错杂无伦次，又多寄吧之</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>某Z君，今隐其名，皆余昔日在中学时良友，分隔多年，消息渐缺。日前偶闻其一大病，适归故乡，迂道往访，则仅晤一人，言病者晨瑞也。劳君远道来视，然已早愈，赴某地候补矣。因大笑，出示日记二册，谓可见当日病状，不妨献诸旧友。持归阅一过，知所患盖“鸟人”一类。语颇错杂无伦次，又多寄吧之言，亦不著月日，惟墨色字体不一，知非一时所书。间亦有略具联络者，今撮录一篇，以供组长研究。记中语误，一字不易，惟人名虽皆学校人，不为世间所知，无关大体，然亦悉易去。至于书名，则本人愈后所题，不复改也。一年十一月十一日识。</p><h2 id="一">一</h2><p>今天晚上，很好的月光。<br>我不见他，已是两多年，今天见了，精神分外爽快。才知道以前的两年，全是发昏，然而须十分小心。不然，那十八班的狗，何以看我两眼呢？<br>我怕得有理。</p><h2 id="二">二</h2><p>今天全没月光，我知道不妙。早上课间小心，方见博的眼色便怪：似乎怕我，似乎想害我。还有七八个人，交头接耳的议论我，张着嘴，对我笑了一笑，我便从头直冷到脚跟，晓得他们布置，都已妥当了。<br>我可不怕，仍旧走我的路。前面一伙小孩子，也在那议论我，眼色也同方见博一样，脸色也铁青。我想我同小孩子有什么仇，他也这样，忍不住大声说：“你寄吧谁啊！？”他们可就跑了。<br>我想，我同方见博有什么仇，同走廊上的人又有什么仇？只有两年以前，把正林先生的陈年作业，踹了一脚，正林先生很不高兴。方见博虽然不认识他，一定也听到风声，代抱不平，约定走廊上的人，同我作冤对。但是小孩子呢？那时候，他们还没有入学，何似今天也睁着怪眼睛，似乎怕我，似乎想害我。这真教我怕，教我纳罕且伤心。<br>我明白了，这是他们班主任教的！</p><h2 id="三">三</h2><p>晚自习总是睡不着。凡事须得研究，才会明白。<br>他们——也有被老师夸过的、也有拿过奖学金的、也有进年级前十的、也有语文考九十一的，他们那时候的脸色，全没有昨天这么怕，也没有这么凶。<br>最奇怪的是昨天走廊上的那个老师，骂他学生，嘴里说道：“真不讨喜！”他眼睛却看着我。我吃了一惊，遮掩不住，那青面獠牙的一伙人，便都哄笑起来。Z君赶上前，硬把我拖回教室中了。<br>拖我回教室，教室里人都装作不认识我，他们的脸色，也全同别人一样。进了教室，便反扣上门，宛然是关了一只鸟人。这一件事，越叫我猜不出底细。<br>前几天，二十班的同学来告状，对Z君说，他们班里的一个大差生，给大家骂了，几个人便把他拉到考场去，让他考八门。我插了一句嘴，二十班的和Z君便都看我几眼。今天才晓得他们的眼光，全同外面的那伙人一模一样。<br>想起来，我从顶上直冷到脚跟。<br>他们拉人考试，就未必不会拉我去。<br>你看那老师“不讨喜”的话，和一伙青面獠牙人的笑，和前天二十班的话，明明是暗号。我看出他话中全是毒，笑中全是刀。他们文具，全整齐的排着，这就是拉人的家伙。<br>照我自己想，虽然不是差生，自从踹了正林的作业，可就难说了。他们似乎别有心思，我全猜不出。况且他们一翻脸，便说人是差生。我还记得Z君教我做论，无论怎样好人，翻他几句，他便打上几个圈；原谅坏人几句，他便说“翻天妙手，与众不同”。我哪里猜得到他们心思究竟怎样，况且是要拉人的时候。<br>凡事总的研究，才会明白。古来时常考试，我也还记得，可是不甚清楚。我翻开历史一查，这历史没有年代，歪歪斜斜的每页上都写着“双减政策”几个字。我横竖睡不着，仔细看了半夜，才从字缝里看出字来，满本都写着两个字是“考试”！<br>书上写着许多字，二十班的说了这许话，却都笑吟吟地睁着怪眼看我。<br>我也是学生，他们想要拉我去考试了！</p><h2 id="四">四</h2><p>早读，我静坐了一会儿，Z君送进作业来，两页自主学本，两页课时精练。这作业，白而且薄，全是字，同那一伙出卷子的出的一样。写了几题，干巴巴的不知是试卷还是作业，便把它连图带字地撕掉。<br>我说：“Z君，对F君说，我闷得慌，想到走廊上走走。”Z君不答应，走了，停一会，可就来开了门。<br>我也不动，研究他们如何摆布我，知道他们一定不肯放松。</p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.truebigsand.top/categories/%E5%AF%84%E9%9D%92%E5%B9%B4/">寄青年</category>
-      
-      
-      <category domain="https://blog.truebigsand.top/tags/%E5%AF%84%E9%9D%92%E5%B9%B4/">寄青年</category>
-      
-      
-      <comments>https://blog.truebigsand.top/2022/08/20/%E5%AF%84%E9%9D%92%E5%B9%B4/%E9%B8%9F%E4%BA%BA%E6%97%A5%E8%AE%B0/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
       <title>短文两篇</title>
       <link>https://blog.truebigsand.top/2022/08/20/%E5%AF%84%E9%9D%92%E5%B9%B4/%E7%9F%AD%E6%96%87%E4%B8%A4%E7%AF%87/</link>
       <guid>https://blog.truebigsand.top/2022/08/20/%E5%AF%84%E9%9D%92%E5%B9%B4/%E7%9F%AD%E6%96%87%E4%B8%A4%E7%AF%87/</guid>
@@ -1049,6 +1057,32 @@ Gitee Pages pull后要手动重新部署不说 它居然给我报了这个&lt;br
       
       
       <comments>https://blog.truebigsand.top/2022/08/20/%E5%AF%84%E9%9D%92%E5%B9%B4/%E7%9F%AD%E6%96%87%E4%B8%A4%E7%AF%87/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>鸟人日记</title>
+      <link>https://blog.truebigsand.top/2022/08/20/%E5%AF%84%E9%9D%92%E5%B9%B4/%E9%B8%9F%E4%BA%BA%E6%97%A5%E8%AE%B0/</link>
+      <guid>https://blog.truebigsand.top/2022/08/20/%E5%AF%84%E9%9D%92%E5%B9%B4/%E9%B8%9F%E4%BA%BA%E6%97%A5%E8%AE%B0/</guid>
+      <pubDate>Sat, 20 Aug 2022 05:08:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;某Z君，今隐其名，皆余昔日在中学时良友，分隔多年，消息渐缺。日前偶闻其一大病，适归故乡，迂道往访，则仅晤一人，言病者晨瑞也。劳君远道来视，然已早愈，赴某地候补矣。因大笑，出示日记二册，谓可见当日病状，不妨献诸旧友。持归阅一过，知所患盖“鸟人”一类。语颇错杂无伦次，又多寄吧之</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>某Z君，今隐其名，皆余昔日在中学时良友，分隔多年，消息渐缺。日前偶闻其一大病，适归故乡，迂道往访，则仅晤一人，言病者晨瑞也。劳君远道来视，然已早愈，赴某地候补矣。因大笑，出示日记二册，谓可见当日病状，不妨献诸旧友。持归阅一过，知所患盖“鸟人”一类。语颇错杂无伦次，又多寄吧之言，亦不著月日，惟墨色字体不一，知非一时所书。间亦有略具联络者，今撮录一篇，以供组长研究。记中语误，一字不易，惟人名虽皆学校人，不为世间所知，无关大体，然亦悉易去。至于书名，则本人愈后所题，不复改也。一年十一月十一日识。</p><h2 id="一">一</h2><p>今天晚上，很好的月光。<br>我不见他，已是两多年，今天见了，精神分外爽快。才知道以前的两年，全是发昏，然而须十分小心。不然，那十八班的狗，何以看我两眼呢？<br>我怕得有理。</p><h2 id="二">二</h2><p>今天全没月光，我知道不妙。早上课间小心，方见博的眼色便怪：似乎怕我，似乎想害我。还有七八个人，交头接耳的议论我，张着嘴，对我笑了一笑，我便从头直冷到脚跟，晓得他们布置，都已妥当了。<br>我可不怕，仍旧走我的路。前面一伙小孩子，也在那议论我，眼色也同方见博一样，脸色也铁青。我想我同小孩子有什么仇，他也这样，忍不住大声说：“你寄吧谁啊！？”他们可就跑了。<br>我想，我同方见博有什么仇，同走廊上的人又有什么仇？只有两年以前，把正林先生的陈年作业，踹了一脚，正林先生很不高兴。方见博虽然不认识他，一定也听到风声，代抱不平，约定走廊上的人，同我作冤对。但是小孩子呢？那时候，他们还没有入学，何似今天也睁着怪眼睛，似乎怕我，似乎想害我。这真教我怕，教我纳罕且伤心。<br>我明白了，这是他们班主任教的！</p><h2 id="三">三</h2><p>晚自习总是睡不着。凡事须得研究，才会明白。<br>他们——也有被老师夸过的、也有拿过奖学金的、也有进年级前十的、也有语文考九十一的，他们那时候的脸色，全没有昨天这么怕，也没有这么凶。<br>最奇怪的是昨天走廊上的那个老师，骂他学生，嘴里说道：“真不讨喜！”他眼睛却看着我。我吃了一惊，遮掩不住，那青面獠牙的一伙人，便都哄笑起来。Z君赶上前，硬把我拖回教室中了。<br>拖我回教室，教室里人都装作不认识我，他们的脸色，也全同别人一样。进了教室，便反扣上门，宛然是关了一只鸟人。这一件事，越叫我猜不出底细。<br>前几天，二十班的同学来告状，对Z君说，他们班里的一个大差生，给大家骂了，几个人便把他拉到考场去，让他考八门。我插了一句嘴，二十班的和Z君便都看我几眼。今天才晓得他们的眼光，全同外面的那伙人一模一样。<br>想起来，我从顶上直冷到脚跟。<br>他们拉人考试，就未必不会拉我去。<br>你看那老师“不讨喜”的话，和一伙青面獠牙人的笑，和前天二十班的话，明明是暗号。我看出他话中全是毒，笑中全是刀。他们文具，全整齐的排着，这就是拉人的家伙。<br>照我自己想，虽然不是差生，自从踹了正林的作业，可就难说了。他们似乎别有心思，我全猜不出。况且他们一翻脸，便说人是差生。我还记得Z君教我做论，无论怎样好人，翻他几句，他便打上几个圈；原谅坏人几句，他便说“翻天妙手，与众不同”。我哪里猜得到他们心思究竟怎样，况且是要拉人的时候。<br>凡事总的研究，才会明白。古来时常考试，我也还记得，可是不甚清楚。我翻开历史一查，这历史没有年代，歪歪斜斜的每页上都写着“双减政策”几个字。我横竖睡不着，仔细看了半夜，才从字缝里看出字来，满本都写着两个字是“考试”！<br>书上写着许多字，二十班的说了这许话，却都笑吟吟地睁着怪眼看我。<br>我也是学生，他们想要拉我去考试了！</p><h2 id="四">四</h2><p>早读，我静坐了一会儿，Z君送进作业来，两页自主学本，两页课时精练。这作业，白而且薄，全是字，同那一伙出卷子的出的一样。写了几题，干巴巴的不知是试卷还是作业，便把它连图带字地撕掉。<br>我说：“Z君，对F君说，我闷得慌，想到走廊上走走。”Z君不答应，走了，停一会，可就来开了门。<br>我也不动，研究他们如何摆布我，知道他们一定不肯放松。</p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.truebigsand.top/categories/%E5%AF%84%E9%9D%92%E5%B9%B4/">寄青年</category>
+      
+      
+      <category domain="https://blog.truebigsand.top/tags/%E5%AF%84%E9%9D%92%E5%B9%B4/">寄青年</category>
+      
+      
+      <comments>https://blog.truebigsand.top/2022/08/20/%E5%AF%84%E9%9D%92%E5%B9%B4/%E9%B8%9F%E4%BA%BA%E6%97%A5%E8%AE%B0/#disqus_thread</comments>
       
     </item>
     
