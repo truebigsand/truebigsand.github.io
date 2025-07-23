@@ -1,39 +1,144 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><!-- hexo injector head_begin start --><script defer src="https://umami.truebigsand.top/asdfghjkl" data-website-id="52e85673-ab5d-4548-bad7-779a4dd96e69"></script><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>用Windows To Go解救机房被机械硬盘拖慢速度的电脑 | 真-大沙子的博客</title><meta name="author" content="真-大沙子"><meta name="copyright" content="真-大沙子"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="社团课上找到机房电脑缓慢的根源了——硬盘 有同学带了块移动固态硬盘 并成功从外接USB盘启动了电脑 速度直接起飞 机房电脑CPU是10代i3 理论上性能不差 但是被1TB的希捷机械盘极大地拖慢了速度 于是立刻买了块新固态硬盘准备装系统带机房去用 本来打算整个118GB的傲腾装系统的 那样速度肯定更起飞 但是要500多块钱 实在太贵了（ 后来还是决定买个便宜的SATA 硬盘盒加硬盘一共100到手 上">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>用 Windows To Go 解救机房被机械硬盘拖慢速度的电脑 | 真-大沙子的博客</title><meta name="author" content="真-大沙子"><meta name="copyright" content="真-大沙子"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="社团课上找到机房电脑缓慢的根源了 —— 硬盘 有同学带了块移动固态硬盘 并成功从外接 USB 盘启动了电脑 速度直接起飞 机房电脑 CPU 是 10 代 i3 理论上性能不差 但是被 1TB 的希捷机械盘极大地拖慢了速度 于是立刻买了块新固态硬盘准备装系统带机房去用 本来打算整个 118GB 的傲腾装系统的 那样速度肯定更起飞 但是要 500 多块钱 实在太贵了（ 后来还是决定买个便宜的 SATA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用Windows To Go解救机房被机械硬盘拖慢速度的电脑">
+<meta property="og:title" content="用 Windows To Go 解救机房被机械硬盘拖慢速度的电脑">
 <meta property="og:url" content="https://blog.truebigsand.top/2024/05/26/%E7%94%A8Windows-To-Go%E8%A7%A3%E6%95%91%E6%9C%BA%E6%88%BF%E8%A2%AB%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E6%8B%96%E6%85%A2%E9%80%9F%E5%BA%A6%E7%9A%84%E7%94%B5%E8%84%91/index.html">
 <meta property="og:site_name" content="真-大沙子的博客">
-<meta property="og:description" content="社团课上找到机房电脑缓慢的根源了——硬盘 有同学带了块移动固态硬盘 并成功从外接USB盘启动了电脑 速度直接起飞 机房电脑CPU是10代i3 理论上性能不差 但是被1TB的希捷机械盘极大地拖慢了速度 于是立刻买了块新固态硬盘准备装系统带机房去用 本来打算整个118GB的傲腾装系统的 那样速度肯定更起飞 但是要500多块钱 实在太贵了（ 后来还是决定买个便宜的SATA 硬盘盒加硬盘一共100到手 上">
+<meta property="og:description" content="社团课上找到机房电脑缓慢的根源了 —— 硬盘 有同学带了块移动固态硬盘 并成功从外接 USB 盘启动了电脑 速度直接起飞 机房电脑 CPU 是 10 代 i3 理论上性能不差 但是被 1TB 的希捷机械盘极大地拖慢了速度 于是立刻买了块新固态硬盘准备装系统带机房去用 本来打算整个 118GB 的傲腾装系统的 那样速度肯定更起飞 但是要 500 多块钱 实在太贵了（ 后来还是决定买个便宜的 SATA">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2024/05/26/k8JlYcRTBjbVEqt.png">
 <meta property="article:published_time" content="2024-05-26T20:33:10.000Z">
-<meta property="article:modified_time" content="2025-07-21T04:36:11.416Z">
+<meta property="article:modified_time" content="2025-07-23T03:43:12.703Z">
 <meta property="article:author" content="真-大沙子">
 <meta property="article:tag" content="技术">
 <meta property="article:tag" content="硬盘">
 <meta property="article:tag" content="Windows To Go">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2024/05/26/k8JlYcRTBjbVEqt.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.truebigsand.top/2024/05/26/%E7%94%A8Windows-To-Go%E8%A7%A3%E6%95%91%E6%9C%BA%E6%88%BF%E8%A2%AB%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E6%8B%96%E6%85%A2%E9%80%9F%E5%BA%A6%E7%9A%84%E7%94%B5%E8%84%91/index.html"><link rel="preconnect" href="https://cdnjs.onmicrosoft.cn"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdnjs.onmicrosoft.cn/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.onmicrosoft.cn/ajax/libs/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.onmicrosoft.cn/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;a582a4d708af4b01a05a742b98213eb6&quot;}"></script><script>(function(c,l,a,r,i,t,y){
+<meta name="twitter:image" content="https://s2.loli.net/2024/05/26/k8JlYcRTBjbVEqt.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "用 Windows To Go 解救机房被机械硬盘拖慢速度的电脑",
+  "url": "https://blog.truebigsand.top/2024/05/26/%E7%94%A8Windows-To-Go%E8%A7%A3%E6%95%91%E6%9C%BA%E6%88%BF%E8%A2%AB%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E6%8B%96%E6%85%A2%E9%80%9F%E5%BA%A6%E7%9A%84%E7%94%B5%E8%84%91/",
+  "image": "https://s2.loli.net/2024/05/26/k8JlYcRTBjbVEqt.png",
+  "datePublished": "2024-05-26T20:33:10.000Z",
+  "dateModified": "2025-07-23T03:43:12.703Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "真-大沙子",
+      "url": "https://blog.truebigsand.top"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.truebigsand.top/2024/05/26/%E7%94%A8Windows-To-Go%E8%A7%A3%E6%95%91%E6%9C%BA%E6%88%BF%E8%A2%AB%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E6%8B%96%E6%85%A2%E9%80%9F%E5%BA%A6%E7%9A%84%E7%94%B5%E8%84%91/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;a582a4d708af4b01a05a742b98213eb6&quot;}"></script><script>(function(c,l,a,r,i,t,y){
     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window, document, "clarity", "script", "n4oq003ka0");</script><script>const GLOBAL_CONFIG = {
+})(window, document, "clarity", "script", "n4oq003ka0");
+</script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: undefined,
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
     homepage: false,
     post: false
   },
-  runtime: '天',
+  runtime: '',
   dateSuffix: {
     just: '刚刚',
     min: '分钟前',
@@ -43,13 +148,13 @@
   },
   copyright: undefined,
   lightbox: 'fancybox',
-  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  Snackbar: undefined,
   infinitegrid: {
-    js: 'https://cdnjs.onmicrosoft.cn/ajax/libs/egjs-infinitegrid/4.11.1/infinitegrid.min.js',
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
     buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
-  islazyload: true,
+  islazyloadPlugin: true,
   isAnchor: false,
   percent: {
     toc: true,
@@ -57,216 +162,151 @@
   },
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '用Windows To Go解救机房被机械硬盘拖慢速度的电脑',
-  isPost: true,
-  isHome: false,
+  title: '用 Windows To Go 解救机房被机械硬盘拖慢速度的电脑',
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2025-07-21 04:36:11'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="真-大沙子的博客" type="application/rss+xml">
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="真-大沙子的博客" type="application/rss+xml">
 <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><script>window.paceOptions = {
   restartOnPushState: false
 }
 
-document.addEventListener('pjax:send', () => {
+btf.addGlobalFn('pjaxSend', () => {
   Pace.restart()
-})
-</script><link rel="stylesheet" href="https://cdnjs.onmicrosoft.cn/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdnjs.onmicrosoft.cn/ajax/libs/pace/1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/04/02/nGqzcIYbRi9hKdr.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">39</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://memos.truebigsand.top"><i class="fa-fw fas fa-comments"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-video"></i><span> 追番</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html"><i class="fa-fw fas fa-subway"></i><span> 开往</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2024/05/26/k8JlYcRTBjbVEqt.png')"><nav id="nav"><span id="blog-info"><a href="/" title="真-大沙子的博客"><span class="site-name">真-大沙子的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://memos.truebigsand.top"><i class="fa-fw fas fa-comments"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-video"></i><span> 追番</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html"><i class="fa-fw fas fa-subway"></i><span> 开往</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">用Windows To Go解救机房被机械硬盘拖慢速度的电脑</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-26T20:33:10.000Z" title="发表于 2024-05-26 20:33:10">2024-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-21T04:36:11.416Z" title="更新于 2025-07-21 04:36:11">2025-07-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">960</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="用Windows To Go解救机房被机械硬盘拖慢速度的电脑"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>社团课上找到机房电脑缓慢的根源了——硬盘<br>
-有同学带了块移动固态硬盘 并成功从外接USB盘启动了电脑 速度直接起飞<br>
-机房电脑CPU是10代i3 理论上性能不差 但是被1TB的希捷机械盘极大地拖慢了速度</p>
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/04/02/nGqzcIYbRi9hKdr.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">39</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://memos.truebigsand.top"><i class="fa-fw fas fa-comments"></i><span> 说说</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-video"></i><span> 追番</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html"><i class="fa-fw fas fa-subway"></i><span> 开往</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://s2.loli.net/2024/05/26/k8JlYcRTBjbVEqt.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">真-大沙子的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">用 Windows To Go 解救机房被机械硬盘拖慢速度的电脑</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://memos.truebigsand.top"><i class="fa-fw fas fa-comments"></i><span> 说说</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-video"></i><span> 追番</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html"><i class="fa-fw fas fa-subway"></i><span> 开往</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">用 Windows To Go 解救机房被机械硬盘拖慢速度的电脑</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-26T20:33:10.000Z" title="发表于 2024-05-26 20:33:10">2024-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-23T03:43:12.703Z" title="更新于 2025-07-23 03:43:12">2025-07-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">966</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>社团课上找到机房电脑缓慢的根源了 —— 硬盘<br>
+有同学带了块移动固态硬盘 并成功从外接 USB 盘启动了电脑 速度直接起飞<br>
+机房电脑 CPU 是 10 代 i3 理论上性能不差 但是被 1TB 的希捷机械盘极大地拖慢了速度</p>
 <p>于是立刻买了块新固态硬盘准备装系统带机房去用<br>
-本来打算整个118GB的傲腾装系统的 那样速度肯定更起飞 但是要500多块钱 实在太贵了（<br>
-后来还是决定买个便宜的SATA 硬盘盒加硬盘一共100到手 上午买的下午就到了（京东就是快啊）<br>
-买的是128GB的长城GW560（买的时候小脑烧了都没看颗粒和TBW 后来发现是TLC就放心了 有80TBW 按比例来看比1TB 600TBW还高一点（）<br>
-硬盘盒是个不知名的 支持SATA3.0<br>
-到手后按照标准流程格成NTFS先测个性能再说</p>
+本来打算整个 118GB 的傲腾装系统的 那样速度肯定更起飞 但是要 500 多块钱 实在太贵了（<br>
+后来还是决定买个便宜的 SATA 硬盘盒加硬盘一共 100 到手 上午买的下午就到了（京东就是快啊）<br>
+买的是 128GB 的长城 GW560（买的时候小脑烧了都没看颗粒和 TBW 后来发现是 TLC 就放心了 有 80TBW 按比例来看比 1TB 600TBW 还高一点（）<br>
+硬盘盒是个不知名的 支持 SATA3.0<br>
+到手后按照标准流程格成 NTFS 先测个性能再说</p>
 <p>测试结果：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">------------------------------------------------------------------------------</span><br><span class="line">CrystalDiskMark 8.0.4 Shizuku Edition x64 (C) 2007-2021 hiyohiyo</span><br><span class="line">                                  Crystal Dew World: https://crystalmark.info/</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">* MB/s = 1,000,000 bytes/s [SATA/600 = 600,000,000 bytes/s]</span><br><span class="line">* KB = 1000 bytes, KiB = 1024 bytes</span><br><span class="line"></span><br><span class="line">[Read]</span><br><span class="line">  SEQ    1MiB (Q=  8, T= 1):   384.064 MB/s [    366.3 IOPS] &lt; 21765.43 us&gt;</span><br><span class="line">  SEQ    1MiB (Q=  1, T= 1):   371.158 MB/s [    354.0 IOPS] &lt;  2823.47 us&gt;</span><br><span class="line">  RND    4KiB (Q= 32, T= 1):    21.640 MB/s [   5283.2 IOPS] &lt;  6020.22 us&gt;</span><br><span class="line">  RND    4KiB (Q=  1, T= 1):    20.802 MB/s [   5078.6 IOPS] &lt;   196.72 us&gt;</span><br><span class="line"></span><br><span class="line">[Write]</span><br><span class="line">  SEQ    1MiB (Q=  8, T= 1):   361.390 MB/s [    344.6 IOPS] &lt; 23093.08 us&gt;</span><br><span class="line">  SEQ    1MiB (Q=  1, T= 1):   357.076 MB/s [    340.5 IOPS] &lt;  2920.76 us&gt;</span><br><span class="line">  RND    4KiB (Q= 32, T= 1):    26.940 MB/s [   6577.1 IOPS] &lt;  4827.29 us&gt;</span><br><span class="line">  RND    4KiB (Q=  1, T= 1):    25.727 MB/s [   6281.0 IOPS] &lt;   158.92 us&gt;</span><br><span class="line"></span><br><span class="line">Profile: Default</span><br><span class="line">   Test: 1 GiB (x1) [F: 0% (0/119GiB)]</span><br><span class="line">   Mode: [Admin]</span><br><span class="line">   Time: Measure 5 sec / Interval 5 sec </span><br><span class="line">   Date: 2024/05/25 19:26:52</span><br><span class="line">     OS: Windows 11 Enterprise [10.0 Build 22621] (x64)</span><br><span class="line">Comment: Great Wall GW560 128GB</span><br></pre></td></tr></table></figure>
-<p>性能差强人意 虽然没有达到标称的读取540MB/s 写入400MB/s 并且被NVME盘薄纱也是必然的<br>
-（一开始由于插USB速度太慢导致被识别成USB2.0测出来速度还不如大号U盘）</p>
-<p>之后干正事 装个Windows 10<br>
-因为之前用过一个U盘做安装介质 就直接用那个U盘了<br>
-用U盘启动之后正常进安装流程 选择要装的磁盘的时候才发现Windows不支持在USB连接的硬盘上装系统：（<br>
-于是使用Windows To Go 用了知名工具<code>WTGA</code><br>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">------------------------------------------------------------------------------</span><br><span class="line">CrystalDiskMark 8.0.4 Shizuku Edition x64 (C) 2007-2021 hiyohiyo</span><br><span class="line">                                  Crystal Dew World: https://crystalmark.info/</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">* MB/s = 1,000,000 bytes/s [SATA/600 = 600,000,000 bytes/s]</span><br><span class="line">* KB = 1000 bytes, KiB = 1024 bytes</span><br><span class="line"></span><br><span class="line">[Read]</span><br><span class="line">  SEQ    1MiB (Q=  8, T= 1):   384.064 MB/s [    366.3 IOPS] &lt; 21765.43 us&gt;</span><br><span class="line">  SEQ    1MiB (Q=  1, T= 1):   371.158 MB/s [    354.0 IOPS] &lt;  2823.47 us&gt;</span><br><span class="line">  RND    4KiB (Q= 32, T= 1):    21.640 MB/s [   5283.2 IOPS] &lt;  6020.22 us&gt;</span><br><span class="line">  RND    4KiB (Q=  1, T= 1):    20.802 MB/s [   5078.6 IOPS] &lt;   196.72 us&gt;</span><br><span class="line"></span><br><span class="line">[Write]</span><br><span class="line">  SEQ    1MiB (Q=  8, T= 1):   361.390 MB/s [    344.6 IOPS] &lt; 23093.08 us&gt;</span><br><span class="line">  SEQ    1MiB (Q=  1, T= 1):   357.076 MB/s [    340.5 IOPS] &lt;  2920.76 us&gt;</span><br><span class="line">  RND    4KiB (Q= 32, T= 1):    26.940 MB/s [   6577.1 IOPS] &lt;  4827.29 us&gt;</span><br><span class="line">  RND    4KiB (Q=  1, T= 1):    25.727 MB/s [   6281.0 IOPS] &lt;   158.92 us&gt;</span><br><span class="line"></span><br><span class="line">Profile: Default</span><br><span class="line">   Test: 1 GiB (x1) [F: 0% (0/119GiB)]</span><br><span class="line">   Mode: [Admin]</span><br><span class="line">   Time: Measure 5 sec / Interval 5 sec </span><br><span class="line">   Date: 2024/05/25 19:26:52</span><br><span class="line">     OS: Windows 11 Enterprise [10.0 Build 22621] (x64)</span><br><span class="line">Comment: Great Wall GW560 128GB</span><br></pre></td></tr></tbody></table></figure>
+<p>性能差强人意 虽然没有达到标称的读取 540MB/s 写入 400MB/s 并且被 NVME 盘薄纱也是必然的<br>
+（一开始由于插 USB 速度太慢导致被识别成 USB2.0 测出来速度还不如大号 U 盘）</p>
+<p>之后干正事 装个 Windows 10<br>
+因为之前用过一个 U 盘做安装介质 就直接用那个 U 盘了<br>
+用 U 盘启动之后正常进安装流程 选择要装的磁盘的时候才发现 Windows 不支持在 USB 连接的硬盘上装系统：（<br>
+于是使用 Windows To Go 用了知名工具<code>WTGA</code><br>
 装了第一次进系统的时候桌面是黑屏 只有个任务栏在哪闪 重启之后又重新让创建账户了<br>
 但每次都在创建账户的时候出错 要么就是直接重启<br>
 试了半天之后终于想到用<code>Dism++</code>导出主系统的驱动再让<code>WTGA</code>在部署的时候把这些驱动加上 果然一遍过了<br>
 之后愉快地设置系统 但是任务管理器突然寄了 打开就闪退 搜了一堆没啥用的解决方案之后终于找到个能用的<br>
 <code>sfc /SCANNOW</code> 扫完一遍之后立竿见影 直接好了（后来又有这种情况的时候用<code>sfc</code>扫也没用了 但是重启就好了）<br>
-之后用火绒顶掉Windows Defender的过程中还出了几次问题 但通过重装软件也解决了<br>
-有趣的是Windows To Go的系统和我的主系统一直在争夺引导权 但是由于我一直用Ubuntu的<code>grub</code>做引导经常需要重新调一下<br>
-顺便说下DiskGenius自带的启动顺序管理器还挺好用的</p>
-<p>最终搞到凌晨12:20多算是差不多了 装软件就下次再说吧 效果等下周实际使用之后回来补充</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.truebigsand.top">真-大沙子</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.truebigsand.top/2024/05/26/%E7%94%A8Windows-To-Go%E8%A7%A3%E6%95%91%E6%9C%BA%E6%88%BF%E8%A2%AB%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E6%8B%96%E6%85%A2%E9%80%9F%E5%BA%A6%E7%9A%84%E7%94%B5%E8%84%91/">https://blog.truebigsand.top/2024/05/26/%E7%94%A8Windows-To-Go%E8%A7%A3%E6%95%91%E6%9C%BA%E6%88%BF%E8%A2%AB%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E6%8B%96%E6%85%A2%E9%80%9F%E5%BA%A6%E7%9A%84%E7%94%B5%E8%84%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.truebigsand.top" target="_blank">真-大沙子的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%8A%80%E6%9C%AF/">技术</a><a class="post-meta__tags" href="/tags/%E7%A1%AC%E7%9B%98/">硬盘</a><a class="post-meta__tags" href="/tags/Windows-To-Go/">Windows To Go</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2024/05/26/k8JlYcRTBjbVEqt.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdnjs.onmicrosoft.cn/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.onmicrosoft.cn/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/05/29/OJ%E7%AD%94%E6%A1%88/" title="OJ答案"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2024/06/15/gZCAI1sNexP3QSM.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">OJ答案</div></div></a></div><div class="next-post pull-right"><a href="/2024/04/26/%E5%AD%A6%E6%A0%A1OJ%E6%8E%A2%E7%B4%A2/" title="学校OJ探索"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2024/06/15/aZU2qG45iOB6A9F.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">学校OJ探索</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/07/07/C++%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E5%81%8F%E7%89%B9%E5%8C%96%E9%97%AE%E9%A2%98%E8%BE%83%E4%B8%BA%E7%BE%8E%E8%A7%82%E7%9A%84%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="C++函数模板偏特化问题较为美观的一种解决方案"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-07</div><div class="title">C++函数模板偏特化问题较为美观的一种解决方案</div></div></a></div><div><a href="/2023/07/13/CSharp-%E9%9A%8F%E7%AC%94-%E7%99%AB%E7%96%AF%E4%B9%8B%E4%BD%9C/" title="CSharp随笔-癫疯之作"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/07/13/YWt7ZAgxSCf5G3n.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-13</div><div class="title">CSharp随笔-癫疯之作</div></div></a></div><div><a href="/2023/06/22/CSharp-%E9%9A%8F%E7%AC%94/" title="C#随笔"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-22</div><div class="title">C#随笔</div></div></a></div><div><a href="/2024/07/11/CentOS-7-%E9%85%8D%E7%BD%91%E8%AE%B0%E5%BD%95/" title="CentOS 7 配网记录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-11</div><div class="title">CentOS 7 配网记录</div></div></a></div><div><a href="/2025/02/02/CentOS-7-%E9%9D%9ELVM%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/" title="CentOS 7 非LVM分区扩容"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-02</div><div class="title">CentOS 7 非LVM分区扩容</div></div></a></div><div><a href="/2023/08/07/Cpp-%E7%BC%96%E8%AF%91%E6%9C%9F%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8E%A2%E7%B4%A2/" title="C++编译期计算的探索"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-07</div><div class="title">C++编译期计算的探索</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/04/02/nGqzcIYbRi9hKdr.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">真-大沙子</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">39</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/truebigsand"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/truebigsand" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:truebigsand@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">你好</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/21/%E3%80%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%91FRP%E4%BB%A3%E7%90%86HTTPS%E6%97%B6%E6%97%A0%E6%B3%95%E8%8E%B7%E5%8F%96IP%E5%9C%B0%E5%9D%80/" title="【解决方案】FRP代理HTTPS时无法获取IP地址">【解决方案】FRP代理HTTPS时无法获取IP地址</a><time datetime="2025-07-21T12:22:35.000Z" title="发表于 2025-07-21 12:22:35">2025-07-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/18/%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/" title="一些记录">一些记录</a><time datetime="2025-07-18T12:12:02.000Z" title="发表于 2025-07-18 12:12:02">2025-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/08/%E4%B8%80%E9%81%93%E5%B0%8F%E9%A2%98/" title="一道小题">一道小题</a><time datetime="2025-03-08T21:30:19.000Z" title="发表于 2025-03-08 21:30:19">2025-03-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/22/%E4%B8%80%E4%BA%9B%E7%AE%80%E8%B0%90%E8%BF%90%E5%8A%A8%E7%9A%84%E8%BF%90%E5%8A%A8%E5%AD%A6%E6%96%B9%E7%A8%8B%E6%8E%A8%E5%AF%BC/" title="一些简谐运动的运动学方程推导">一些简谐运动的运动学方程推导</a><time datetime="2025-02-22T15:06:12.000Z" title="发表于 2025-02-22 15:06:12">2025-02-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/02/CentOS-7-%E9%9D%9ELVM%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/" title="CentOS 7 非LVM分区扩容">CentOS 7 非LVM分区扩容</a><time datetime="2025-02-02T15:45:29.000Z" title="发表于 2025-02-02 15:45:29">2025-02-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By 真-大沙子</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" href="https://icp.gov.moe/?keyword=20241026"><img class="icp-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://icp.gov.moe/favicon.ico"><span>萌 ICP 备 20241026 号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdnjs.onmicrosoft.cn/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.min.js"></script><script src="https://cdnjs.onmicrosoft.cn/ajax/libs/vanilla-lazyload/17.8.8/lazyload.iife.min.js"></script><script src="https://cdnjs.onmicrosoft.cn/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script>function panguFn () {
-  if (typeof pangu === 'object') pangu.autoSpacingPage()
-  else {
-    getScript('https://cdnjs.onmicrosoft.cn/ajax/libs/pangu/4.0.7/pangu.min.js')
-      .then(() => {
-        pangu.autoSpacingPage()
-      })
+之后用火绒顶掉 Windows Defender 的过程中还出了几次问题 但通过重装软件也解决了<br>
+有趣的是 Windows To Go 的系统和我的主系统一直在争夺引导权 但是由于我一直用 Ubuntu 的<code>grub</code>做引导经常需要重新调一下<br>
+顺便说下 DiskGenius 自带的启动顺序管理器还挺好用的</p>
+<p>最终搞到凌晨 12:20 多算是差不多了 装软件就下次再说吧 效果等下周实际使用之后回来补充</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.truebigsand.top">真-大沙子</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.truebigsand.top/2024/05/26/%E7%94%A8Windows-To-Go%E8%A7%A3%E6%95%91%E6%9C%BA%E6%88%BF%E8%A2%AB%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E6%8B%96%E6%85%A2%E9%80%9F%E5%BA%A6%E7%9A%84%E7%94%B5%E8%84%91/">https://blog.truebigsand.top/2024/05/26/%E7%94%A8Windows-To-Go%E8%A7%A3%E6%95%91%E6%9C%BA%E6%88%BF%E8%A2%AB%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E6%8B%96%E6%85%A2%E9%80%9F%E5%BA%A6%E7%9A%84%E7%94%B5%E8%84%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.truebigsand.top" target="_blank">真-大沙子的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%8A%80%E6%9C%AF/">技术</a><a class="post-meta__tags" href="/tags/%E7%A1%AC%E7%9B%98/">硬盘</a><a class="post-meta__tags" href="/tags/Windows-To-Go/">Windows To Go</a></div><div class="post-share"><div class="social-share" data-image="https://s2.loli.net/2024/05/26/k8JlYcRTBjbVEqt.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/05/29/OJ%E7%AD%94%E6%A1%88/" title="OJ 答案"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2024/06/15/gZCAI1sNexP3QSM.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">OJ 答案</div></div><div class="info-2"><div class="info-item-1">为造福同学 将 OJ 中 Python 课程答案公布于此 OJ 网址：https://oj.nsfz.net 章节 1：输入、输出及赋值 1120 nsfz 欢迎你 print('nsfz')print('欢迎你') 1381 你的名字 name = input()print('你好', name) 1119 A + B 问题 a = int(input())b = int(input())print(a + b) 章节 2：顺序结构 1003 混合运算 a, b=map(int, input().split())print((a + b) * (a - b)) 1001 求一个数的立方 a = int(input())print(a ** 3) 1008 求长方形面积和周长 a, b = map(int, input().split())print(a * b, (a + b) * 2) 1122 计算线段长度 x1, y1 = map(int, input().split())x2, y2 = map(int, input().split())distance = ((x1 ...</div></div></div></a><a class="pagination-related" href="/2024/04/26/%E5%AD%A6%E6%A0%A1OJ%E6%8E%A2%E7%B4%A2/" title="学校 OJ 探索"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2024/06/15/aZU2qG45iOB6A9F.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">学校 OJ 探索</div></div><div class="info-2"><div class="info-item-1">社团课上与同学玩学校 OJ 并尝试对评测机进行一些探索 为了方便就用 python 代码了 已知学校 OJ 使用的是氦星人系统 评测机禁用了os模块 导致一开始没法进行系统调用 遂尝试读写文件 发现居然是可以的 （socket模块依赖os模块 导致暂时只能通过 OJ 的测试功能获取代码输出） 先尝试硬写大量数据以搞爆评测机 发现会报File too large错误 于是放弃 根据平时使用经验（做题时的报错）得知评测机为Linux系统 使用 Python3.8 然后尝试向/tmp目录写文件 发现可以持久化保存 并且另一位同学也能读取到（顺便根据多次实验发现能读取到的概率大约 50% 推测有两个评测机负载均衡） 之后尝试读取/proc等以获取系统信息 如下    信息 来源 值     CPU /proc/cpuinfo Intel® Xeon® Gold 5120 CPU @ 2.20GHz   内存 /proc/meminfo 16GB   硬盘分区 /proc/partitions 104857600 blocks (sda)… （按 1KB / block 则为 100GB）...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/07/07/C++%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E5%81%8F%E7%89%B9%E5%8C%96%E9%97%AE%E9%A2%98%E8%BE%83%E4%B8%BA%E7%BE%8E%E8%A7%82%E7%9A%84%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="C++ 函数模板偏特化问题较为美观的一种解决方案"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-07</div><div class="info-item-2">C++ 函数模板偏特化问题较为美观的一种解决方案</div></div><div class="info-2"><div class="info-item-1">C++ 函数模板偏特化问题较为美观的一种解决方案 使std::enable_if_t作为int并带上默认值 template &lt;typename T, typename std::enable_if_t&lt;std::is_integral_v&lt;T&gt;, int&gt; = 0&gt;void foo(T x) {    std::cout &lt;&lt; "is integral\n";}template &lt;typename T, typename std::enable_if_t&lt;std::is_floating_point_v&lt;T&gt;, int&gt; = 0&gt;void foo(T x) {    std::cout &lt;&lt; "is floating point\n";}</div></div></div></a><a class="pagination-related" href="/2023/07/13/CSharp-%E9%9A%8F%E7%AC%94-%E7%99%AB%E7%96%AF%E4%B9%8B%E4%BD%9C/" title="CSharp 随笔 - 癫疯之作"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/07/13/YWt7ZAgxSCf5G3n.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-13</div><div class="info-item-2">CSharp 随笔 - 癫疯之作</div></div><div class="info-2"><div class="info-item-1">起因是写了这样一段代码 if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add){    string ipString = string.Join("，", e.NewItems.Cast&lt;IWebSocketConnection&gt;().Select(x =&gt; x.ConnectionInfo.ClientIpAddress));    WeakReferenceMessenger.Default.Send&lt;DisplayAlertMessage&gt;(new("有新用户连接", ipString));}else if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove){    string ipString = string.Join("，", e.OldItems.Cast&lt;IWebSocketConnection&gt;()....</div></div></div></a><a class="pagination-related" href="/2023/06/22/CSharp-%E9%9A%8F%E7%AC%94/" title="C# 随笔"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-22</div><div class="info-item-2">C# 随笔</div></div><div class="info-2"><div class="info-item-1">最近写项目的时候用到这样一段代码 Console.WriteLine(    string.Join('\n', (await api.Download(3174))        .Split('\n')        .Where(            line =&gt; !string.IsNullOrWhiteSpace(line)        )    )); 理想情况下中间打算写成.Where(!string.IsNullOrWhiteSpace) 但是 C# 好像不支持这样的运算符重载 于是写一个函数处理一下 public static class Functional{    public static Func&lt;T, bool&gt; Not&lt;T&gt;(Func&lt;T, bool&gt; func)    {        return (T para) =&gt;        {            return !func(para);        };    }} 然后就可以做到这样的效果 Console.WriteLine(...</div></div></div></a><a class="pagination-related" href="/2024/07/11/CentOS-7-%E9%85%8D%E7%BD%91%E8%AE%B0%E5%BD%95/" title="CentOS 7 配网记录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-11</div><div class="info-item-2">CentOS 7 配网记录</div></div><div class="info-2"><div class="info-item-1">最近给家里吃灰的 NUC5 装了 CentOS7（之前重装 Windows 给我玩坏了 而且配置实在不太跑得动） 记录一下配网的常用操作 步骤 找到网卡名称 ip address # 可简写为ip a 临时联网 wpa_supplicant -B -i &lt;网卡名称&gt; -c &lt;(wpa_passphrase &lt;WiFi名称&gt; &lt;WiFi密码&gt;)dhclient &lt;网卡名称&gt; 使用NetworkManager接管网络配置 yum -y install NetworkManager-wifisystemctl start NetworkManager.servicesystemctl enable NetworkManager.service# 以上两行或chkconfig NetworkManager onnmcli device set &lt;网卡名称&gt; managed yesnmcli connection delete &lt;WiFi名称&gt;nmcli device wifi connect &lt;WiFi名...</div></div></div></a><a class="pagination-related" href="/2025/02/02/CentOS-7-%E9%9D%9ELVM%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/" title="CentOS 7 非 LVM 分区扩容"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-02</div><div class="info-item-2">CentOS 7 非 LVM 分区扩容</div></div><div class="info-2"><div class="info-item-1">起因是跑在服务器上的 CentOS 的硬盘爆了 在 ESXi 中扩容后没有反应 需要到系统中进行设置 安装系统时图方便没有用 LVM 顺便一提现在网上搜索CentOS 分区扩容全是基于 LVM 的 并且文章也是互相 Copy😡😡😡 其实非 LVM 的扩容反而更简单 步骤 查看现有分区类型及大小 df -lh 进入分区编辑（以 sda 为例） fdisk /dev/sda 根据操作提示 删除最后一个分区并在原地（一般只需使用默认起始位置 若自行更改过则记录原分区起始位置并填入）新建一个分区 保存并退出 刷新分区信息 partprobe /dev/sda 刷新分区：（填入之前创建的分区号 此处位 sda3）  若为 ext2/ext3/ext4 文件系统 则使用resize2fs /dev/sda3 若为 xfs 文件系统 则使用xfs_growfs /dev/sda3  大功告成 可以使用df -lh或lsblk查看现在的分区信息 </div></div></div></a><a class="pagination-related" href="/2023/08/07/Cpp-%E7%BC%96%E8%AF%91%E6%9C%9F%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8E%A2%E7%B4%A2/" title="C++ 编译期计算的探索"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-07</div><div class="info-item-2">C++ 编译期计算的探索</div></div><div class="info-2"><div class="info-item-1">先放个代码在这 解释下次再说吧（摸了 #include &lt;iostream&gt;#include &lt;utility&gt;#include &lt;array&gt;namespace compiling {#define DEF_BINARY_OP(NAME, OP)\    template &lt;auto N1, auto N2&gt;\    struct NAME##_t : std::bool_constant&lt;N1 == N2&gt; {};\    template &lt;auto N1, auto N2&gt;\    constexpr auto NAME##_v = NAME##_t&lt;N1, N2&gt;::value;    DEF_BINARY_OP(less_than, &lt;)    DEF_BINARY_OP(less_than_or_equals, &lt;=)    DEF_BINARY_OP(greater_than, &gt;)    DEF_BINARY_OP(greater_than_or_equals,...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/04/02/nGqzcIYbRi9hKdr.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">真-大沙子</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">39</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/truebigsand"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/truebigsand" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:truebigsand@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">你好</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/21/%E3%80%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%91FRP%E4%BB%A3%E7%90%86HTTPS%E6%97%B6%E6%97%A0%E6%B3%95%E8%8E%B7%E5%8F%96IP%E5%9C%B0%E5%9D%80/" title="【解决方案】FRP 代理 HTTPS 时无法获取 IP 地址">【解决方案】FRP 代理 HTTPS 时无法获取 IP 地址</a><time datetime="2025-07-21T12:22:35.000Z" title="发表于 2025-07-21 12:22:35">2025-07-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/18/%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/" title="一些记录">一些记录</a><time datetime="2025-07-18T12:12:02.000Z" title="发表于 2025-07-18 12:12:02">2025-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/08/%E4%B8%80%E9%81%93%E5%B0%8F%E9%A2%98/" title="一道小题">一道小题</a><time datetime="2025-03-08T21:30:19.000Z" title="发表于 2025-03-08 21:30:19">2025-03-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/22/%E4%B8%80%E4%BA%9B%E7%AE%80%E8%B0%90%E8%BF%90%E5%8A%A8%E7%9A%84%E8%BF%90%E5%8A%A8%E5%AD%A6%E6%96%B9%E7%A8%8B%E6%8E%A8%E5%AF%BC/" title="一些简谐运动的运动学方程推导">一些简谐运动的运动学方程推导</a><time datetime="2025-02-22T15:06:12.000Z" title="发表于 2025-02-22 15:06:12">2025-02-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/02/CentOS-7-%E9%9D%9ELVM%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/" title="CentOS 7 非 LVM 分区扩容">CentOS 7 非 LVM 分区扩容</a><time datetime="2025-02-02T15:45:29.000Z" title="发表于 2025-02-02 15:45:29">2025-02-02</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2020 - 2025 By 真-大沙子</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.2</a></span></div><div class="footer_custom_text"><a target="_blank" href="https://icp.gov.moe/?keyword=20241026"><img class="icp-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://icp.gov.moe/favicon.ico"><span>萌 ICP 备 20241026 号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
   }
-}
 
-function panguInit () {
-  if (false){
-    GLOBAL_CONFIG_SITE.isPost && panguFn()
-  } else {
-    panguFn()
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
   }
-}
 
-document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
-  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
-  if ($mermaid.length === 0) return
-  const runMermaid = () => {
+  showKatex()
+})()</script><script>(() => {
+  const runMermaid = ele => {
     window.loadMermaid = true
     const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
 
-    Array.from($mermaid).forEach((item, index) => {
+    ele.forEach((item, index) => {
       const mermaidSrc = item.firstElementChild
-      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
-      const mermaidID = 'mermaid-' + index
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
       const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
 
       const renderFn = mermaid.render(mermaidID, mermaidDefinition)
-
-      const renderV10 = () => {
-        renderFn.then(({svg}) => {
-          mermaidSrc.insertAdjacentHTML('afterend', svg)
-        })
-      }
-
-      const renderV9 = svg => {
+      const renderMermaid = svg => {
         mermaidSrc.insertAdjacentHTML('afterend', svg)
       }
 
-      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
     })
   }
 
   const loadMermaid = () => {
-    window.loadMermaid ? runMermaid() : getScript('https://cdnjs.onmicrosoft.cn/ajax/libs/mermaid/10.8.0/mermaid.min.js').then(runMermaid)
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
   }
 
-  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
-
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
   window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
 })()</script><script>(() => {
-  const initValine = () => {
-    const valine = new Valine(Object.assign({
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
       el: '#vcomment',
       appId: '0oYaDfse345J4VUouGfdAAz2-gzGzoHsz',
       appKey: 'N21jduRjeLUbU0SNqWUdburH',
       avatar: 'mp',
       serverURLs: '',
       emojiMaps: "",
-      path: window.location.pathname,
-      visitor: false
-    }, null))
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
   }
 
-  const loadValine = async () => {
-    if (typeof Valine === 'function') initValine()
-    else {
-      await getScript('https://cdnjs.onmicrosoft.cn/ajax/libs/valine/1.5.1/Valine.min.js')
-      initValine()
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
     }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
   }
 
   if ('Valine' === 'Valine' || !false) {
@@ -275,4 +315,62 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-
   } else {
     window.loadOtherComment = loadValine
   }
-})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdnjs.onmicrosoft.cn/ajax/libs/butterfly-extsrc/1.1.3/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdnjs.onmicrosoft.cn/ajax/libs/butterfly-extsrc/1.1.3/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdnjs.onmicrosoft.cn/ajax/libs/aplayer/1.10.1/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.onmicrosoft.cn/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdnjs.onmicrosoft.cn/ajax/libs/butterfly-extsrc/1.1.3/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script>(() => {
+  const option = null
+  const config = {"site_uv":false,"site_pv":false,"page_pv":false,"token":null}
+
+  const runTrack = () => {
+    umami.track(props => ({ ...props, url: window.location.pathname, title: GLOBAL_CONFIG_SITE.title }))
+  }
+
+  const loadUmamiJS = () => {
+    btf.getScript('https://umami.truebigsand.top/asdfghjkl/script.js', {
+      'data-website-id': '52e85673-ab5d-4548-bad7-779a4dd96e69',
+      'data-auto-track': 'false',
+      ...option
+    }).then(runTrack)
+  }
+
+  const getData = async (isPost) => {
+    const now = Date.now()
+    const keyUrl = isPost ? `&url=${window.location.pathname}` : ''
+    const headerList = { 'Accept': 'application/json' }
+    if (true) headerList['Authorization'] = `Bearer ${config.token}`
+    else headerList['x-umami-api-key'] = config.token
+    const res = await fetch(`https://umami.truebigsand.top/asdfghjkl/api/websites/52e85673-ab5d-4548-bad7-779a4dd96e69/stats?startAt=0000000000&endAt=${now}${keyUrl}`, {
+      method: "GET",
+      headers: headerList
+    })
+    return await res.json()
+  }
+
+  const insertData = async () => {
+    try {
+      if (GLOBAL_CONFIG_SITE.pageType === 'post' && config.page_pv) {
+        const pagePV = document.getElementById('umamiPV')
+        if (pagePV) {
+          const data = await getData(true)
+          pagePV.textContent = data.pageviews.value
+        }
+      } else {
+        const data = (config.site_uv || config.site_pv) && await getData()
+        if (config.site_uv) {
+          const siteUV = document.getElementById('umami-site-uv')
+          if (siteUV) siteUV.textContent = data.visitors.value
+        }
+        if (config.site_pv) {
+          const sitePV = document.getElementById('umami-site-pv')
+          if (sitePV) sitePV.textContent = data.pageviews.value
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load Umami Analytics:', e)
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', runTrack, 'umami_analytics_run_track')
+  btf.addGlobalFn('pjaxComplete', insertData, 'umami_analytics_insert')
+
+  loadUmamiJS()
+  insertData()
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
